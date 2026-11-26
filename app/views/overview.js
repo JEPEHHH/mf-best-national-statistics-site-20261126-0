@@ -1,5 +1,5 @@
-import { snapshot, ageBands, populationSeries, urbanSeries, provinces4 } from './data/national.js';
-import { columns, line, ranked, donut } from './charts.js';
+import { snapshot, ageBands, populationSeries, urbanSeries, provinces4 } from '../data/national.js';
+import { columns, line, ranked, donut } from '../charts.js';
 
 export function renderOverview(el) {
   el.innerHTML = `
