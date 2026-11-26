@@ -34,5 +34,10 @@ writeFileSync(
   })
 );
 
-const count = (dir) => readdirSync(dir, { withFileTypes: true }).filter(e => e.isFile()).length;
-console.log(`Handed in: ${count(join(out, 'app'))} app files, ${count(join(out, 'screenshots'))} screenshots -> ${out}`);
+function countAll(dir) {
+  return readdirSync(dir, { withFileTypes: true }).reduce((n, e) => {
+    const p = join(dir, e.name);
+    return n + (e.isDirectory() ? countAll(p) : 1);
+  }, 0);
+}
+console.log(`Handed in: ${countAll(join(out, 'app'))} app files, ${countAll(join(out, 'screenshots'))} screenshots -> ${out}`);
